@@ -1,418 +1,1460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Residency & Suites</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-  
-  /* Modern Premium Background Design */
-  body { 
-    background: #f0f4f8; 
-    background-image: radial-gradient(#dce5ef 1px, transparent 1px);
-    background-size: 20px 20px;
-    color: #2d3748; 
-  }
-  
-  /* Header Section */
-  header { 
-    background: #0f172a; 
-    color: white; 
-    padding: 16px 6%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12); 
-  }
-  .logo-box { display: flex; align-items: center; gap: 12px; }
-  .royal-icon { font-size: 28px; }
-  .hotel-title { font-size: 22px; font-weight: 700; letter-spacing: 0.8px; color: #f8fafc; }
-  .hotel-tagline { font-size: 11px; color: #38bdf8; text-transform: uppercase; letter-spacing: 1.5px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Stay Hub - Official World-Class Luxury Stays</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-  /* Hero Section */
-  .hero { 
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
-    color: white; 
-    padding: 40px 6%; 
-    text-align: center; 
-  }
-  .hero h2 { font-size: 28px; margin-bottom: 8px; color: #f3f4f6; }
-  .hero p { font-size: 14px; color: #9ca3af; }
-  
-  /* Search & Filter Box */
-  .filter-box { 
-    background: #ffffff; 
-    padding: 22px; 
-    border-radius: 12px; 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 12px; 
-    margin-top: 25px; 
-    color: #1e293b; 
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); 
-  }
-  .field { flex: 1; min-width: 140px; text-align: left; }
-  .field label { display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px; }
-  select, input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; background: #f8fafc; }
-  select:focus, input:focus { outline: none; border-color: #0284c7; background: #fff; }
-  
-  .btn-search { 
-    background: #0284c7; 
-    color: white; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 6px; 
-    font-weight: 600; 
-    cursor: pointer; 
-    height: 40px; 
-    width: 100%; 
-    margin-top: 22px; 
-    transition: background 0.2s;
-  }
-  .btn-search:hover { background: #0369a1; }
+    :root {
+      --primary-navy: #0b132b;
+      --secondary-navy: #1c2541;
+      --accent-gold: #d4af37;
+      --gold-hover: #b89628;
+      --card-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
 
-  /* Room Cards Grid */
-  .container { padding: 35px 6%; max-width: 1250px; margin: 0 auto; }
-  .section-heading { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #0f172a; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-  
-  .card { 
-    background: white; 
-    border-radius: 12px; 
-    overflow: hidden; 
-    border: 1px solid #e2e8f0; 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); 
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-  .card img { width: 100%; height: 180px; object-fit: cover; }
-  .card-body { padding: 16px; }
-  .card-title { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
-  .card-sub { font-size: 12px; color: #64748b; margin-bottom: 8px; }
-  .price { font-size: 18px; color: #0284c7; font-weight: 700; margin-top: 12px; display: flex; justify-content: space-between; align-items: center; }
-  .btn-book { background: #0f172a; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
-  .btn-book:hover { background: #1e293b; }
+    body {
+      background-color: #0f172a;
+      color: #333;
+    }
 
-  /* Modal & Detailed Reviews */
-  .modal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); align-items: center; justify-content: center; padding: 15px; z-index: 100; backdrop-filter: blur(2px); }
-  .modal-content { background: white; border-radius: 12px; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; padding: 22px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); }
-  
-  .reviews-box { background: #f8fafc; padding: 12px; border-radius: 8px; margin: 15px 0; border: 1px solid #e2e8f0; }
-  .review-header { font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 8px; }
-  .review-card { background: white; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; font-size: 12px; }
-  .review-card:last-child { margin-bottom: 0; }
-  .review-user { font-weight: 700; color: #0f172a; display: flex; justify-content: space-between; }
-  .stars { color: #f59e0b; }
-  .review-text { color: #475569; margin-top: 3px; line-height: 1.4; }
+    /* Header Navigation */
+    header {
+      background: var(--primary-navy);
+      border-bottom: 2px solid var(--accent-gold);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-  /* Form & Validation */
-  .form-group { margin-bottom: 12px; text-align: left; }
-  .form-group label { display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; }
-  .error-msg { color: #ef4444; font-size: 11px; margin-top: 3px; display: none; }
-  
-  .btn-confirm { background: #059669; color: white; border: none; width: 100%; padding: 10px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px; }
-  .btn-cancel { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; width: 100%; padding: 8px; border-radius: 6px; margin-top: 6px; cursor: pointer; font-weight: 600; }
-</style>
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, #d4af37, #f3e5ab);
+      color: #0b132b;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    .logo-text span { color: var(--accent-gold); }
+
+    .city-nav-bar {
+      background: #1e293b;
+      padding: 8px 40px;
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      border-bottom: 1px solid #334155;
+    }
+
+    .city-nav-item {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      white-space: nowrap;
+      padding: 4px 8px;
+    }
+
+    .city-nav-item:hover {
+      color: var(--accent-gold);
+    }
+
+    .city-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      color: #0b132b;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      border-radius: 8px;
+      padding: 10px 0;
+      min-width: 220px;
+      z-index: 1100;
+    }
+
+    .city-nav-item:hover .city-dropdown {
+      display: block;
+    }
+
+    .city-dropdown a {
+      display: block;
+      padding: 8px 16px;
+      color: #1e293b;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .city-dropdown a:hover {
+      background: #f1f5f9;
+      color: #059669;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-item {
+      color: #e2e8f0;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .phone-link {
+      color: var(--accent-gold);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .login-btn {
+      background: linear-gradient(135deg, #d4af37, #b89628);
+      color: #0b132b;
+      padding: 9px 20px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 1.5s ease-in-out;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .hero-bg.active { opacity: 1; }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(11, 19, 43, 0.75), rgba(15, 23, 42, 0.92));
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero h1 {
+      color: #ffffff;
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      color: var(--accent-gold);
+      font-size: 16px;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    /* Search Filter Box */
+    .filter-card {
+      background: #ffffff;
+      padding: 22px;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+      width: 95%;
+      max-width: 1250px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) 140px;
+      gap: 15px;
+      align-items: end;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .input-group label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+    }
+
+    .input-group select {
+      padding: 11px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+      background: #f8fafc;
+    }
+
+    .search-btn {
+      background: var(--primary-navy);
+      color: var(--accent-gold);
+      border: 2px solid var(--accent-gold);
+      padding: 11px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      height: 45px;
+    }
+
+    .search-btn:hover {
+      background: var(--accent-gold);
+      color: var(--primary-navy);
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1350px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      color: #ffffff;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title span { color: var(--accent-gold); }
+
+    /* Discover Filter Tabs (Image 2 Inspired) */
+    .category-tabs {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 10px;
+    }
+
+    .cat-tab {
+      background: #1e293b;
+      color: #cbd5e1;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cat-tab.active {
+      background: var(--accent-gold);
+      color: #0b132b;
+    }
+
+    .discover-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 45px;
+    }
+
+    .city-card {
+      position: relative;
+      height: 220px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .city-card:hover { transform: scale(1.04); }
+
+    .city-card img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .city-title {
+      position: absolute;
+      bottom: 12px; left: 15px;
+      color: #fff; font-size: 19px; font-weight: 800;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.85);
+    }
+
+    /* Hotels Grid */
+    .hotels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 25px;
+    }
+
+    .hotel-card {
+      background: #ffffff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s;
+    }
+
+    .hotel-card:hover { transform: translateY(-8px); }
+
+    .card-img-wrapper {
+      position: relative;
+      height: 220px;
+    }
+
+    .card-img-wrapper img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .badge-luxury {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--accent-gold);
+      color: #0b132b;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .badge-rating {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: #059669;
+      color: #ffffff;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .card-body { padding: 18px; }
+
+    .hotel-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-navy);
+      margin-bottom: 5px;
+    }
+
+    .hotel-location {
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 12px;
+    }
+
+    .price-tag {
+      font-size: 20px;
+      font-weight: 800;
+      color: #059669;
+    }
+
+    .action-btns { display: flex; gap: 6px; }
+
+    .btn-secondary {
+      background: #e2e8f0; color: #1e293b; border: none;
+      padding: 8px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary-navy); color: var(--accent-gold);
+      border: 1px solid var(--accent-gold); padding: 8px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;
+    }
+
+    .btn-book {
+      background: #059669; color: #ffffff; border: none;
+      padding: 8px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer;
+    }
+
+    /* Loyalty Banner (Image 3) */
+    .membership-banner {
+      background: linear-gradient(135deg, #0b132b, #1c2541);
+      border: 2px solid var(--accent-gold);
+      border-radius: 18px;
+      padding: 35px;
+      margin: 50px 0;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 30px;
+      align-items: center;
+      color: #ffffff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .member-perks { list-style: none; margin: 18px 0; }
+    .member-perks li { font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: #cbd5e1; }
+    .member-perks li i { color: var(--accent-gold); }
+
+    .membership-card-box {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1px solid var(--accent-gold);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+    }
+
+    .club-btn {
+      background: linear-gradient(135deg, #d4af37, #b89628);
+      color: #0b132b;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: 800;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    /* News Media Highlights Section (Image 4) */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 30px 0 50px 0;
+    }
+
+    .news-card {
+      background: #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #334155;
+    }
+
+    .news-card img {
+      width: 100%; height: 160px; object-fit: cover;
+    }
+
+    .news-body { padding: 18px; color: #fff; }
+    .news-source { font-size: 11px; color: var(--accent-gold); font-weight: 700; margin-bottom: 6px; }
+    .news-headline { font-size: 14px; font-weight: 700; line-height: 1.4; }
+
+    /* App Download Banner (Image 5) */
+    .app-banner {
+      background: linear-gradient(135deg, #1c2541, #0b132b);
+      border: 2px solid var(--accent-gold);
+      border-radius: 18px;
+      padding: 35px;
+      margin: 50px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .store-btns { display: flex; gap: 12px; margin-top: 18px; }
+
+    .store-btn {
+      background: #000; color: #fff; padding: 8px 16px; border-radius: 8px;
+      display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 12px; border: 1px solid #475569;
+    }
+
+    /* Informational Expandable Text Accordions (Image 6) */
+    .info-accordion-section { margin: 50px 0; }
+    .info-panel {
+      background: #1e293b;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #334155;
+      overflow: hidden;
+    }
+
+    .info-header {
+      padding: 16px 20px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .info-header:hover { background: #334155; }
+
+    .info-content {
+      display: none;
+      padding: 0 20px 20px 20px;
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.6;
+      border-top: 1px dashed #475569;
+      background: #0f172a;
+    }
+
+    .info-panel.active .info-content { display: block; }
+
+    /* FAQ Section (Image 7) */
+    .faq-container { margin: 50px 0; }
+    .faq-card {
+      background: #1e293b;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      border: 1px solid #334155;
+    }
+
+    .faq-header {
+      padding: 18px 22px;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-header:hover { background: #334155; }
+
+    .faq-body {
+      display: none;
+      padding: 0 22px 18px 22px;
+      color: #cbd5e1;
+      font-size: 13.5px;
+      line-height: 1.6;
+      border-top: 1px dashed #475569;
+      background: #0f172a;
+    }
+
+    .faq-card.active .faq-body { display: block; }
+    .faq-card.active .faq-header i { transform: rotate(180deg); color: var(--accent-gold); }
+
+    /* Footer Directory Grid (Images 8 & 9) */
+    footer {
+      background: #080d1e;
+      color: #94a3b8;
+      padding: 50px 20px 20px 20px;
+      border-top: 2px solid var(--accent-gold);
+    }
+
+    .footer-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+      max-width: 1300px;
+      margin: 0 auto 40px auto;
+      text-align: left;
+    }
+
+    .footer-col h4 {
+      color: var(--accent-gold);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { font-size: 12px; margin-bottom: 8px; cursor: pointer; }
+    .footer-col ul li:hover { color: #fff; }
+
+    .social-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1300px;
+      margin: 30px auto 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid #1e293b;
+    }
+
+    .social-icons { display: flex; gap: 15px; }
+    .social-icons a {
+      color: #94a3b8; font-size: 18px; text-decoration: none;
+    }
+    .social-icons a:hover { color: var(--accent-gold); }
+
+    /* Modals & Forms */
+    .tab-header {
+      display: flex;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 18px;
+    }
+
+    .tab-btn {
+      flex: 1; padding: 10px; text-align: center; font-weight: 700; font-size: 14px; cursor: pointer; color: #64748b; border-bottom: 3px solid transparent;
+    }
+
+    .tab-btn.active { color: var(--primary-navy); border-bottom-color: var(--accent-gold); }
+
+    .modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px;
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-content {
+      background: #ffffff; width: 100%; max-width: 480px; border-radius: 15px; overflow: hidden; max-height: 90vh; overflow-y: auto; position: relative;
+    }
+
+    .modal-header {
+      background: var(--primary-navy); color: #fff; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .close-btn { color: var(--accent-gold); font-size: 28px; cursor: pointer; font-weight: 800; }
+    .modal-body { padding: 25px; }
+
+    .form-group { margin-bottom: 14px; text-align: left; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+    .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; }
+
+    .error-text { color: #dc2626; font-size: 11px; font-weight: 600; margin-top: 4px; display: none; }
+    .forgot-link { display: block; text-align: right; font-size: 12px; color: var(--primary-navy); font-weight: 600; margin-top: 6px; cursor: pointer; text-decoration: underline; }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .gallery-item { position: relative; border-radius: 8px; overflow: hidden; height: 210px; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-label { position: absolute; bottom: 0; background: rgba(11, 19, 43, 0.88); color: var(--accent-gold); width: 100%; padding: 8px; text-align: center; font-size: 12px; font-weight: 600; }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="logo-box">
-    <span class="royal-icon">👑</span>
-    <div>
-      <div class="hotel-title">ROYAL RESIDENCY</div>
-      <div class="hotel-tagline">Luxury Hotels & Suites</div>
-    </div>
-  </div>
-</header>
-
-<section class="hero">
-  <h2>Book Your Ideal Stay</h2>
-  <p>Search rooms across all major states and districts in India</p>
-
-  <div class="filter-box">
-    <div class="field">
-      <label>State</label>
-      <select id="stateSelect" onchange="loadDistricts()">
-        <option value="Telangana">Telangana</option>
-        <option value="Andhra Pradesh">Andhra Pradesh</option>
-        <option value="Karnataka">Karnataka</option>
-        <option value="Maharashtra">Maharashtra</option>
-        <option value="Tamil Nadu">Tamil Nadu</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Kerala">Kerala</option>
-      </select>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="top-bar">
+      <div class="logo-container" onclick="resetView()">
+        <div class="logo-badge">RT</div>
+        <div class="logo-text">ROYAL <span>STAY HUB</span></div>
+      </div>
+      <ul class="nav-links">
+        <li class="nav-item">
+          <i class="fa-solid fa-headset"></i> Support: 
+          <a href="tel:1234567890" class="phone-link">1234567890</a> / 
+          <a href="tel:0987654321" class="phone-link">0987654321</a>
+        </li>
+        <li><button class="login-btn" id="navAuthBtn" onclick="openModal('authModal')"><i class="fa-solid fa-user-lock"></i> Login / Sign Up</button></li>
+      </ul>
     </div>
 
-    <div class="field">
-      <label>District/City</label>
-      <select id="districtSelect"></select>
+    <!-- Image 1 Dropdown Sub-Menu -->
+    <div class="city-nav-bar">
+      <div class="city-nav-item">
+        Hyderabad <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+        <div class="city-dropdown">
+          <a href="#" onclick="quickFilter('Telangana', 'Hyderabad')">All of Hyderabad</a>
+          <a href="#" onclick="quickFilter('Telangana', 'Hyderabad')">Secunderabad Railway Station</a>
+          <a href="#" onclick="quickFilter('Telangana', 'Hyderabad')">Gachibowli</a>
+          <a href="#" onclick="quickFilter('Telangana', 'Hyderabad')">Ameerpet</a>
+          <a href="#" onclick="quickFilter('Telangana', 'Hyderabad')">Kukatpally</a>
+          <a href="#" onclick="quickFilter('Telangana', 'Hyderabad')">Madhapur</a>
+          <a href="#" onclick="quickFilter('Telangana', 'Hyderabad')">Begumpet</a>
+          <a href="#" onclick="quickFilter('Telangana', 'Hyderabad')">Hitec City</a>
+        </div>
+      </div>
+      <div class="city-nav-item" onclick="quickFilter('Tamil Nadu', 'Chennai')">Chennai</div>
+      <div class="city-nav-item" onclick="quickFilter('Delhi', 'New Delhi')">Delhi</div>
+      <div class="city-nav-item" onclick="quickFilter('Maharashtra', 'Mumbai')">Mumbai</div>
+      <div class="city-nav-item" onclick="quickFilter('West Bengal', 'Kolkata')">Kolkata</div>
+      <div class="city-nav-item" onclick="quickFilter('Karnataka', 'Bengaluru')">Bengaluru</div>
+      <div class="city-nav-item" onclick="quickFilter('Goa', 'North Goa')">Goa</div>
     </div>
+  </header>
 
-    <div class="field">
-      <label>Guests</label>
-      <select id="guestSelect">
-        <option value="1">1 Person</option>
-        <option value="2">2 Persons</option>
-        <option value="3-4">3-4 Persons</option>
-        <option value="5+">5+ Family/Group</option>
-      </select>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg active" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>Experience World-Class Luxury</h1>
+      <p>Handpicked Premium Hotels, Resorts & Suites Across All 28 States of India</p>
+
+      <div class="filter-card">
+        <!-- All 28 States -->
+        <div class="input-group">
+          <label>Select State</label>
+          <select id="stateSelect" onchange="updateDistricts()"></select>
+        </div>
+
+        <!-- Dynamic Districts -->
+        <div class="input-group">
+          <label>District / City</label>
+          <select id="districtSelect"></select>
+        </div>
+
+        <!-- 1 to 5+ Guests -->
+        <div class="input-group">
+          <label>Guests</label>
+          <select id="guestSelect">
+            <option value="1 Guest">1 Guest</option>
+            <option value="2 Guests">2 Guests</option>
+            <option value="3 Guests">3 Guests</option>
+            <option value="4 Guests">4 Guests</option>
+            <option value="5+ Guests">5+ Guests</option>
+          </select>
+        </div>
+
+        <!-- 5 Low to High Room Categories -->
+        <div class="input-group">
+          <label>Room Category</label>
+          <select id="categorySelect">
+            <option value="Economy Standard Room">1. Economy Standard Room (Low)</option>
+            <option value="Deluxe Comfort Suite">2. Deluxe Comfort Suite</option>
+            <option value="Executive Business Suite">3. Executive Business Suite</option>
+            <option value="Presidential Penthouse">4. Presidential Penthouse</option>
+            <option value="Royal Heritage Villa (Private Pool)">5. Royal Heritage Villa (High)</option>
+          </select>
+        </div>
+
+        <button class="search-btn" onclick="filterHotels()"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+      </div>
     </div>
+  </section>
 
-    <div class="field">
-      <label>Room Category</label>
-      <select id="categorySelect">
-        <option value="All">All Types</option>
-        <option value="Standard">Standard</option>
-        <option value="Deluxe">Deluxe</option>
-        <option value="Executive Suite">Executive Suite</option>
-        <option value="Presidential Suite">Presidential Suite</option>
-      </select>
-    </div>
+  <!-- Main Container -->
+  <main class="main-container">
 
-    <div class="field" style="flex:0.8;">
-      <button class="btn-search" onclick="searchRooms()">Search Rooms</button>
-    </div>
-  </div>
-</section>
-
-<section class="container">
-  <div class="section-heading">Available Hotel Rooms</div>
-  <div id="roomGrid" class="grid"></div>
-</section>
-
-<!-- Modal Window -->
-<div id="bookingModal" class="modal">
-  <div class="modal-content">
-    <h3 id="modalRoomTitle" style="color:#0f172a;">Book Room</h3>
-    <p id="modalRoomSub" style="color:#64748b; font-size:12px; margin-bottom:10px;"></p>
+    <!-- Image 2 Destination Tabs & Cards -->
+    <div class="section-title"><i class="fa-solid fa-map-location-dot"></i> Discover India with <span>Royal Stay Hub</span></div>
     
-    <!-- Detailed Customer Reviews -->
-    <div class="reviews-box">
-      <div class="review-header">Guest Experiences & Reviews:</div>
-      <div id="reviewsList"></div>
+    <div class="category-tabs">
+      <div class="cat-tab active" onclick="switchCategoryTab('cities', this)"><i class="fa-solid fa-city"></i> Popular Cities</div>
+      <div class="cat-tab" onclick="switchCategoryTab('mountains', this)"><i class="fa-solid fa-mountain"></i> Mountains</div>
+      <div class="cat-tab" onclick="switchCategoryTab('pilgrims', this)"><i class="fa-solid fa-om"></i> Pilgrims</div>
+      <div class="cat-tab" onclick="switchCategoryTab('beaches', this)"><i class="fa-solid fa-umbrella-beach"></i> Beaches</div>
     </div>
 
-    <!-- Strict Form Validation -->
-    <form id="bookingForm" onsubmit="handleFormSubmit(event)">
-      <div class="form-group">
-        <label>Full Name *</label>
-        <input type="text" id="custName" placeholder="Enter Full Name">
-        <div id="errName" class="error-msg">Please enter your full name!</div>
+    <div class="discover-grid" id="discoverGrid"></div>
+
+    <!-- Hotels Grid Section (4 to 6 Unique Hotels per City) -->
+    <div class="section-title" id="hotelsSection" style="margin-top: 40px;">
+      <i class="fa-solid fa-hotel"></i> <span id="resultsHeader">Featured Royal Hotels & Suites</span>
+    </div>
+    <div class="hotels-grid" id="hotelsGrid"></div>
+
+    <!-- Image 3 Loyalty Banner -->
+    <div class="membership-banner">
+      <div>
+        <h2 style="font-size: 28px; color: var(--accent-gold); margin-bottom: 8px;">Join Royal Crown Membership</h2>
+        <p style="font-size: 14px; color: #cbd5e1;">Unlock VIP travel perks, member-only discounts, and complimentary room upgrades nationwide.</p>
+        <ul class="member-perks">
+          <li><i class="fa-solid fa-gift"></i> Get up to 10% instant discount on all Royal partner stays</li>
+          <li><i class="fa-solid fa-headset"></i> Priority 24/7 Concierge & VIP Check-in support</li>
+          <li><i class="fa-solid fa-bed"></i> 1 Free Night stay after every 7 completed bookings</li>
+        </ul>
+        <button class="club-btn" onclick="openModal('clubModal')">Join Royal Club Now</button>
       </div>
 
-      <div class="form-group">
-        <label>Phone Number *</label>
-        <input type="tel" id="custPhone" placeholder="10-digit mobile number">
-        <div id="errPhone" class="error-msg">Please enter a valid 10-digit phone number!</div>
+      <div class="membership-card-box">
+        <div style="font-size: 12px; color: var(--accent-gold); text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">ROYAL CROWN VIP</div>
+        <div style="font-size: 26px; font-weight: 900; color: #fff; margin: 15px 0;">1 Lakh+ Members</div>
+        <div style="font-size: 13px; color: #059669; font-weight: 700;">30,000+ Free Nights Claimed</div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label>Email ID *</label>
-        <input type="email" id="custEmail" placeholder="example@mail.com">
-        <div id="errEmail" class="error-msg">Please enter a valid email address!</div>
+    <!-- Image 4 In The News Section -->
+    <div class="section-title"><i class="fa-solid fa-newspaper"></i> In <span>The News</span></div>
+    <div class="news-grid">
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80" alt="News">
+        <div class="news-body">
+          <div class="news-source">business-standard.com • June 23, 2026</div>
+          <div class="news-headline">Royal Stay Hub adds 3,500 new corporate partners in FY26, logs 25% annual growth.</div>
+        </div>
       </div>
-
-      <div class="form-group">
-        <label>Aadhaar Card Number *</label>
-        <input type="text" id="custAadhaar" placeholder="12-digit Aadhaar number" maxlength="12">
-        <div id="errAadhaar" class="error-msg">Please enter a valid 12-digit Aadhaar number!</div>
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="News">
+        <div class="news-body">
+          <div class="news-source">economictimes.indiatimes.com • September 17, 2026</div>
+          <div class="news-headline">Royal Stay Hub's luxury collection expands across 50 key Indian tourist cities.</div>
+        </div>
       </div>
-
-      <button type="submit" class="btn-confirm">Confirm & Reserve Room</button>
-      <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
-    </form>
-  </div>
-</div>
-
-<script>
-// District Data per State
-const districts = {
-  "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Khammam", "Karimnagar"],
-  "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Tirupati", "Guntur", "Kakinada"],
-  "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubballi"],
-  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
-  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
-  "Delhi": ["New Delhi", "North Delhi", "South Delhi"],
-  "Kerala": ["Kochi", "Thiruvananthapuram", "Kozhikode"]
-};
-
-// Detailed Rooms & Comprehensive Customer Reviews
-const rooms = [
-  { 
-    id: 1, 
-    name: "Royal Executive Suite", 
-    type: "Executive Suite", 
-    guests: "5+", 
-    state: "Telangana", 
-    district: "Hyderabad", 
-    price: 4500, 
-    img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=500&q=80", 
-    reviews: [
-      { name: "Ravi Teja", rating: "5 ★", text: "We stayed here as a family of 5. Very clean suite with huge space and fast room service." },
-      { name: "Suresh Kumar", rating: "4 ★", text: "Great location near Metro station. Breakfast was delicious and room maintenance was neat." }
-    ] 
-  },
-  { 
-    id: 2, 
-    name: "Royal Grand Family Suite", 
-    type: "Executive Suite", 
-    guests: "5+", 
-    state: "Telangana", 
-    district: "Hyderabad", 
-    price: 5200, 
-    img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=500&q=80", 
-    reviews: [
-      { name: "CH. Likitha", rating: "5 ★", text: "The interior ambiance and luxury lighting felt top-notch. Staff behavior was polite." },
-      { name: "Gowtham Ganesh", rating: "5 ★", text: "Excellent AC cooling and quiet place. Ideal choice for corporate or group stay." }
-    ] 
-  },
-  { 
-    id: 3, 
-    name: "Royal Deluxe Room", 
-    type: "Deluxe", 
-    guests: "2", 
-    state: "Telangana", 
-    district: "Hyderabad", 
-    price: 3200, 
-    img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=500&q=80", 
-    reviews: [
-      { name: "Pavan Reddy", rating: "4 ★", text: "Cozy king size bed and clean washroom. Totally worth the price." }
-    ] 
-  },
-  { 
-    id: 4, 
-    name: "Royal Standard Comfort", 
-    type: "Standard", 
-    guests: "1", 
-    state: "Andhra Pradesh", 
-    district: "Visakhapatnam", 
-    price: 2200, 
-    img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=500&q=80", 
-    reviews: [
-      { name: "Anil Varma", rating: "4 ★", text: "Budget-friendly stay with smooth check-in process." }
-    ] 
-  }
-];
-
-let activeRoom = null;
-
-function loadDistricts() {
-  const st = document.getElementById("stateSelect").value;
-  const distSelect = document.getElementById("districtSelect");
-  distSelect.innerHTML = "";
-  districts[st].forEach(d => {
-    let opt = document.createElement("option");
-    opt.value = d;
-    opt.textContent = d;
-    distSelect.appendChild(opt);
-  });
-}
-
-function searchRooms() {
-  const st = document.getElementById("stateSelect").value;
-  const dist = document.getElementById("districtSelect").value;
-  const cat = document.getElementById("categorySelect").value;
-
-  let filtered = rooms.filter(r => {
-    let matchCat = (cat === "All" || r.type === cat);
-    return r.state === st && r.district === dist && matchCat;
-  });
-
-  // Guaranteeing at least 2 options for presentation demo
-  if (filtered.length < 2) {
-    filtered = rooms.slice(0, 2);
-  }
-
-  renderGrid(filtered);
-}
-
-function renderGrid(list) {
-  const grid = document.getElementById("roomGrid");
-  grid.innerHTML = list.map(r => `
-    <div class="card">
-      <img src="${r.img}" alt="Room Image">
-      <div class="card-body">
-        <div class="card-title">${r.name}</div>
-        <div class="card-sub">📍 ${r.district}, ${r.state} | ${r.type}</div>
-        <div style="font-size:12px; color:#475569;">Max Capacity: ${r.guests} Guests</div>
-        <div class="price">
-          ₹${r.price} <small style="font-size:12px; font-weight:normal; color:#64748b;">/ night</small>
-          <button class="btn-book" onclick="openModal(${r.id})">Book Now</button>
+      <div class="news-card">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="News">
+        <div class="news-body">
+          <div class="news-source">moneycontrol.com • October 2026</div>
+          <div class="news-headline">Royal Stay Hub achieves 99.8% guest satisfaction rating across all 28 states.</div>
         </div>
       </div>
     </div>
-  `).join("");
-}
 
-function openModal(id) {
-  activeRoom = rooms.find(r => r.id === id) || rooms[0];
-  document.getElementById("modalRoomTitle").textContent = activeRoom.name;
-  document.getElementById("modalRoomSub").textContent = `📍 ${activeRoom.district}, ${activeRoom.state} - ₹${activeRoom.price}/night`;
-
-  // Render Full Detailed Reviews
-  const revContainer = document.getElementById("reviewsList");
-  revContainer.innerHTML = activeRoom.reviews.map(rev => `
-    <div class="review-card">
-      <div class="review-user">
-        <span>${rev.name}</span>
-        <span class="stars">${rev.rating}</span>
+    <!-- Image 5 Mobile App Download Banner -->
+    <div class="app-banner">
+      <div>
+        <h2 style="font-size: 26px; color: var(--accent-gold); margin-bottom: 8px;">Book Faster on Royal Stay Hub App</h2>
+        <p style="font-size: 14px; color: #cbd5e1;">Trusted by 10 Lakh+ guests across India. Get exclusive mobile discounts!</p>
+        <div style="margin-top: 10px; font-size: 13px; color: var(--accent-gold); font-weight: 700;">★ 4.8 Rating (50,000+ App Reviews)</div>
+        <div class="store-btns">
+          <a href="#" class="store-btn" onclick="alert('Redirecting to Google Play Store...')"><i class="fa-brands fa-google-play" style="font-size: 20px;"></i> <div><span style="font-size: 9px;">GET IT ON</span><br><strong>Google Play</strong></div></a>
+          <a href="#" class="store-btn" onclick="alert('Redirecting to Apple App Store...')"><i class="fa-brands fa-apple" style="font-size: 20px;"></i> <div><span style="font-size: 9px;">Download on the</span><br><strong>App Store</strong></div></a>
+        </div>
       </div>
-      <div class="review-text">"${rev.text}"</div>
+      <div style="text-align: center; background: #fff; padding: 15px; border-radius: 10px; color: #000;">
+        <i class="fa-solid fa-qrcode" style="font-size: 80px;"></i>
+        <div style="font-size: 11px; font-weight: 700; margin-top: 5px;">Scan to Download</div>
+      </div>
     </div>
-  `).join("");
 
-  hideErrors();
-  document.getElementById("bookingForm").reset();
-  document.getElementById("bookingModal").style.display = "flex";
-}
+    <!-- Image 6 Informational Expandable Text Panels -->
+    <div class="info-accordion-section">
+      <div class="section-title"><i class="fa-solid fa-circle-info"></i> Royal Stay Hub <span>Destination & Travel Guide</span></div>
+      
+      <div class="info-panel" onclick="toggleInfo(this)">
+        <div class="info-header">
+          <span>Find Royal Stay Hub Luxury Hotels Across India</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="info-content">
+          Royal Stay Hub operates handpicked luxury hotels, heritage palaces, and coastal resorts across all 28 states of India. Whether you are traveling for corporate meetings in Hyderabad and Mumbai, or seeking serene holidays in Munnar and Shimla, our hotels guarantee world-class hospitality.
+        </div>
+      </div>
 
-function closeModal() {
-  document.getElementById("bookingModal").style.display = "none";
-}
+      <div class="info-panel" onclick="toggleInfo(this)">
+        <div class="info-header">
+          <span>Budget & Premium Luxury Accommodations for Every Trip</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="info-content">
+          Choose from 5 distinct room categories ranging from Economy Standard Deluxe to Presidential Penthouse and Private Pool Heritage Villas. Each property features 24/7 security, high-speed Wi-Fi, fine dining restaurants, and complimentary breakfast.
+        </div>
+      </div>
 
-function hideErrors() {
-  document.querySelectorAll(".error-msg").forEach(e => e.style.display = "none");
-}
+      <div class="info-panel" onclick="toggleInfo(this)">
+        <div class="info-header">
+          <span>Corporate & Business Stays with VIP Perks</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="info-content">
+          Our business class hotels feature conference halls, high-speed workstation suites, airport shuttle transfers, and priority express check-in options tailored for executives and corporate groups.
+        </div>
+      </div>
+    </div>
 
-function handleFormSubmit(e) {
-  e.preventDefault();
-  hideErrors();
+    <!-- Image 7 FAQ Section with Answers -->
+    <div class="faq-container">
+      <div class="section-title"><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions About <span>Royal Stay Hub</span></div>
+      
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-header">
+          <span>When was Royal Stay Hub established?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-body">
+          Royal Stay Hub was established in 1926 and has grown into a trusted hospitality network serving over 10 million satisfied guests across India.
+        </div>
+      </div>
 
-  const name = document.getElementById("custName").value.trim();
-  const phone = document.getElementById("custPhone").value.trim();
-  const email = document.getElementById("custEmail").value.trim();
-  const aadhaar = document.getElementById("custAadhaar").value.trim();
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-header">
+          <span>Can I modify or cancel my booking online?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-body">
+          Yes! All bookings made through Royal Stay Hub come with 100% Free Cancellation up to 24 hours prior to check-in with instant refunds.
+        </div>
+      </div>
 
-  let valid = true;
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-header">
+          <span>Are Royal Stay Hub hotels couple-friendly and safe?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-body">
+          Absolutely. All listed hotels are 100% verified, safe, and couple-friendly. Unmarried couples with valid government ID proofs are welcomed with full privacy guaranteed.
+        </div>
+      </div>
 
-  if (name === "") {
-    document.getElementById("errName").style.display = "block";
-    valid = false;
-  }
-  if (phone.length !== 10 || isNaN(phone)) {
-    document.getElementById("errPhone").style.display = "block";
-    valid = false;
-  }
-  if (!email.includes("@") || !email.includes(".")) {
-    document.getElementById("errEmail").style.display = "block";
-    valid = false;
-  }
-  if (aadhaar.length !== 12 || isNaN(aadhaar)) {
-    document.getElementById("errAadhaar").style.display = "block";
-    valid = false;
-  }
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-header">
+          <span>How can I find Royal Stay Hub hotels near me?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-body">
+          You can use our State & District filter on the top hero section or allow GPS access on our Mobile App to instantly locate top-rated partner hotels nearby.
+        </div>
+      </div>
 
-  if (valid) {
-    alert(`Booking Confirmed Successfully!\n\nGuest Name: ${name}\nAadhaar Number: ${aadhaar}\nHotel Room: ${activeRoom.name}`);
-    closeModal();
-  }
-}
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-header">
+          <span>What amenities are included in Royal Suites?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-body">
+          Our suites include high-speed 5G Wi-Fi, complimentary buffet breakfast, swimming pool & gym access, 24/7 room service, and luxury bath kits.
+        </div>
+      </div>
 
-// Initial Setup Load
-loadDistricts();
-searchRooms();
-</script>
+      <div class="faq-card" onclick="toggleFaq(this)">
+        <div class="faq-header">
+          <span>Where can I find current deals and offers?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-body">
+          Join our Royal Crown VIP Loyalty Membership to get an instant 10% discount on every stay and earn 1 free night after every 7 stays!
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Images 8 & 9 Footer Directory -->
+  <footer>
+    <div class="footer-links-grid">
+      <div class="footer-col">
+        <h4>About Royal Stay Hub</h4>
+        <ul>
+          <li>About Us</li>
+          <li>Teams / Careers</li>
+          <li>Official Blog</li>
+          <li>Support Center</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Guest Policies</h4>
+        <ul>
+          <li>Terms & Conditions</li>
+          <li>Guest Guidelines</li>
+          <li>Privacy Policy</li>
+          <li>Trust & Safety</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Security & Legal</h4>
+        <ul>
+          <li>Cyber Security</li>
+          <li>Cyber Security Awareness</li>
+          <li>Responsible Disclosure</li>
+          <li>Advertise Your Hotel</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support Hotline</h4>
+        <ul>
+          <li><i class="fa-solid fa-phone"></i> 1234567890</li>
+          <li><i class="fa-solid fa-phone"></i> 0987654321</li>
+          <li><i class="fa-solid fa-envelope"></i> support@royalstayhub.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="social-bar">
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+      </div>
+      <div style="font-size: 12px; color: #94a3b8;">
+        © 2026 Royal Stay Hub (RT Stays) Limited. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Fixed Sign In / Sign Up Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="authModalTitle">Account Authentication</h3>
+        <span class="close-btn" onclick="closeModal('authModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="tab-header">
+          <div class="tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">Sign In</div>
+          <div class="tab-btn" id="signupTabBtn" onclick="switchAuthTab('signup')">Sign Up / Register</div>
+        </div>
+
+        <!-- Correct Sign In Layout -->
+        <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label>Email Address or Phone Number</label>
+            <input type="text" id="loginUserVal" placeholder="Enter Email or Phone Number" required>
+            <div class="error-text" id="loginErr">Please enter a valid Email or 10-digit Phone Number!</div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="loginPassVal" placeholder="Enter password..." required>
+            <span class="forgot-link" onclick="openForgotModal()">Forgot Password?</span>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 11px; margin-top: 10px;">Sign In</button>
+        </form>
+
+        <!-- Correct Sign Up Form (Strict & Works with Real Inputs) -->
+        <form id="signupForm" style="display: none;" onsubmit="handleSignupSubmit(event)">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="regName" placeholder="Enter full name" required>
+          </div>
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="text" id="regPhone" placeholder="Enter 10-digit mobile number" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+            <div class="error-text" id="regPhoneErr">Please enter a valid 10-digit phone number!</div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="regEmail" placeholder="Enter real email address" required>
+            <div class="error-text" id="regEmailErr">Please enter a valid email address!</div>
+          </div>
+          <div class="form-group">
+            <label>Create Password</label>
+            <input type="password" id="regPass" placeholder="Enter password..." required>
+          </div>
+          <button type="submit" class="btn-book" style="width: 100%; padding: 11px; font-size: 13px;">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Forgot Password Modal -->
+  <div class="modal" id="forgotModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Reset Password</h3>
+        <span class="close-btn" onclick="closeModal('forgotModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleForgotReset(event)">
+          <div class="form-group">
+            <label>Registered Email or Phone</label>
+            <input type="text" id="resetInput" placeholder="Enter Email or Phone" required>
+            <div class="error-text" id="resetErr">Please enter a valid Email or 10-digit Phone!</div>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 11px;">Send Reset OTP</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="bookingHotelTitle">Confirm Room Booking</h3>
+        <span class="close-btn" onclick="closeModal('bookingModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="validateAndBook(event)">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter guest name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" id="bookPhone" placeholder="Enter 10-digit mobile number" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+            <div class="error-text" id="bookPhoneErr">Please enter a valid 10-digit phone number!</div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter email address" required>
+          </div>
+          <div class="form-group">
+            <label>Payment Option</label>
+            <select required>
+              <option value="cash">Pay at Hotel (Cash / Card)</option>
+              <option value="upi">UPI / QR Code Scan</option>
+              <option value="card">Credit / Debit Card Online</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-book" style="width: 100%; padding: 12px; font-size: 14px;">Confirm & Pay</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviews Modal (3 Reviews Included) -->
+  <div class="modal" id="reviewModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="reviewHotelTitle">Verified Customer Reviews</h3>
+        <span class="close-btn" onclick="closeModal('reviewModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 12px;">
+          <strong style="color: #0b132b;">1. Siddharth Varma</strong> <span style="color: #d4af37;">★★★★★</span>
+          <p style="font-size: 13px; color: #555; margin-top: 4px;">"The Presidential suite was top-notch. Staff service and food quality were exceptional!"</p>
+        </div>
+        <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 12px;">
+          <strong style="color: #0b132b;">2. Sneha Reddy</strong> <span style="color: #d4af37;">★★★★★</span>
+          <p style="font-size: 13px; color: #555; margin-top: 4px;">"Very clean rooms, infinity swimming pool view was incredible! 100% family safe."</p>
+        </div>
+        <div style="padding-bottom: 12px;">
+          <strong style="color: #0b132b;">3. Rajesh Sharma</strong> <span style="color: #d4af37;">★★★★★</span>
+          <p style="font-size: 13px; color: #555; margin-top: 4px;">"Smooth VIP check-in with Royal Crown membership discount. Highly recommended!"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery Modal -->
+  <div class="modal" id="galleryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalHotelTitle">Hotel Photo Gallery</h3>
+        <span class="close-btn" onclick="closeModal('galleryModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="gallery-grid" id="galleryContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // All 28 States of India
+    const allIndiaStates = {
+      "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Khammam"],
+      "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Tirupati", "Guntur"],
+      "West Bengal": ["Kolkata", "Darjeeling", "Siliguri"],
+      "Tamil Nadu": ["Chennai", "Madurai", "Coimbatore"],
+      "Delhi": ["New Delhi", "North Delhi", "South Delhi"],
+      "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
+      "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Jaisalmer"],
+      "Goa": ["North Goa", "South Goa"],
+      "Kerala": ["Munnar", "Kochi", "Aalappuzha"],
+      "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru"],
+      "Gujarat": ["Ahmedabad", "Surat", "Vadodara"],
+      "Punjab": ["Amritsar", "Ludhiana"],
+      "Uttar Pradesh": ["Agra", "Varanasi", "Lucknow"],
+      "Himachal Pradesh": ["Shimla", "Manali"],
+      "Uttarakhand": ["Dehradun", "Rishikesh"],
+      "Assam": ["Guwahati"],
+      "Bihar": ["Patna"],
+      "Chhattisgarh": ["Raipur"],
+      "Haryana": ["Gurugram"],
+      "Jharkhand": ["Ranchi"],
+      "Madhya Pradesh": ["Bhopal", "Indore"],
+      "Odisha": ["Puri", "Bhubaneswar"],
+      "Sikkim": ["Gangtok"],
+      "Arunachal Pradesh": ["Itanagar"],
+      "Manipur": ["Imphal"],
+      "Meghalaya": ["Shillong"],
+      "Mizoram": ["Aizawl"],
+      "Nagaland": ["Kohima"],
+      "Tripura": ["Agartala"]
+    };
+
+    const categoryDestinations = {
+      "cities": [
+        { name: "Hyderabad", state: "Telangana", img: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=600&q=80" },
+        { name: "Kolkata", state: "West Bengal", img: "https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=600&q=80" },
+        { name: "Chennai", state: "Tamil Nadu", img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80" },
+        { name: "Mumbai", state: "Maharashtra", img: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=600&q=80" }
+      ],
+      "mountains": [
+        { name: "Shimla", state: "Himachal Pradesh", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" },
+        { name: "Munnar", state: "Kerala", img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80" },
+        { name: "Darjeeling", state: "West Bengal", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" }
+      ],
+      "pilgrims": [
+        { name: "Tirupati", state: "Andhra Pradesh", img: "https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=600&q=80" },
+        { name: "Varanasi", state: "Uttar Pradesh", img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=600&q=80" }
+      ],
+      "beaches": [
+        { name: "North Goa", state: "Goa", img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80" },
+        { name: "Puri", state: "Odisha", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" }
+      ]
+    };
+
+    const cityHotelsDatabase = {
+      "Hyderabad": [
+        { name: "Royal Taj Falaknuma Palace", price: "₹12,499", rating: "4.9 ★", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" },
+        { name: "Royal Park Hyatt Banjara Hills", price: "₹8,200", rating: "4.8 ★", img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" },
+        { name: "Royal Novotel Hitec City", price: "₹6,900", rating: "4.7 ★", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" },
+        { name: "Royal Trident Gachibowli Suite", price: "₹9,100", rating: "4.9 ★", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" },
+        { name: "Royal ITC Kakatiya Heritage", price: "₹10,500", rating: "5.0 ★", img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" }
+      ]
+    };
+
+    function populateStates() {
+      const stateSelect = document.getElementById("stateSelect");
+      stateSelect.innerHTML = "";
+      Object.keys(allIndiaStates).forEach(state => {
+        const opt = document.createElement("option");
+        opt.value = state;
+        opt.textContent = state;
+        stateSelect.appendChild(opt);
+      });
+      stateSelect.value = "Telangana";
+      updateDistricts();
+    }
+
+    function updateDistricts() {
+      const selectedState = document.getElementById("stateSelect").value;
+      const districtSelect = document.getElementById("districtSelect");
+      districtSelect.innerHTML = "";
+      (allIndiaStates[selectedState] || ["Central City"]).forEach(dist => {
+        const opt = document.createElement("option");
+        opt.value = dist;
+        opt.textContent = dist;
+        districtSelect.appendChild(opt);
+      });
+    }
+
+    function switchCategoryTab(cat, btn) {
+      document.querySelectorAll(".cat-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+
+      const grid = document.getElementById("discoverGrid");
+      grid.innerHTML = "";
+      (categoryDestinations[cat] || []).forEach(place => {
+        grid.innerHTML += `
+          <div class="city-card" onclick="quickFilter('${place.state}', '${place.name}')">
+            <img src="${place.img}" alt="${place.name}">
+            <div class="city-title">${place.name}</div>
+          </div>
+        `;
+      });
+    }
+
+    function renderHotels(hotelsList, state, district) {
+      const grid = document.getElementById("hotelsGrid");
+      grid.innerHTML = "";
+
+      hotelsList.forEach(hotel => {
+        grid.innerHTML += `
+          <div class="hotel-card">
+            <div class="card-img-wrapper">
+              <span class="badge-luxury">Royal Partner</span>
+              <span class="badge-rating">${hotel.rating}</span>
+              <img src="${hotel.img}" alt="${hotel.name}">
+            </div>
+            <div class="card-body">
+              <div class="hotel-name">${hotel.name}</div>
+              <div class="hotel-location"><i class="fa-solid fa-location-dot"></i> ${district}, ${state}</div>
+              <div class="card-footer">
+                <div class="price-tag">${hotel.price} <span style="font-size:11px; color:#666;">/ night</span></div>
+                <div class="action-btns">
+                  <button class="btn-secondary" onclick="openReviews('${hotel.name}')">Reviews</button>
+                  <button class="btn-primary" onclick="openGallery('${hotel.name}')">Gallery</button>
+                  <button class="btn-book" onclick="openBooking('${hotel.name}')">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function filterHotels() {
+      const state = document.getElementById("stateSelect").value;
+      const district = document.getElementById("districtSelect").value;
+      const category = document.getElementById("categorySelect").value;
+
+      document.getElementById("resultsHeader").innerText = `Hotels in ${district}, ${state} (${category})`;
+
+      const matches = cityHotelsDatabase[district] || [
+        { name: `Royal ${district} Heritage Hotel`, price: "₹7,500", rating: "4.9 ★", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" },
+        { name: `Royal ${district} Grand Suite`, price: "₹9,800", rating: "5.0 ★", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" },
+        { name: `Royal ${district} Heights Tower`, price: "₹6,800", rating: "4.8 ★", img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" },
+        { name: `Royal ${district} Beach Villa`, price: "₹11,500", rating: "5.0 ★", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" }
+      ];
+
+      renderHotels(matches, state, district);
+      document.getElementById("hotelsSection").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function quickFilter(state, district) {
+      if(allIndiaStates[state]) {
+        document.getElementById("stateSelect").value = state;
+        updateDistricts();
+        document.getElementById("districtSelect").value = district;
+      }
+      filterHotels();
+    }
+
+    /* Fixed Sign In / Sign Up Handlers */
+    function switchAuthTab(tab) {
+      if (tab === 'login') {
+        document.getElementById("loginTabBtn").classList.add("active");
+        document.getElementById("signupTabBtn").classList.remove("active");
+        document.getElementById("loginForm").style.display = "block";
+        document.getElementById("signupForm").style.display = "none";
+      } else {
+        document.getElementById("signupTabBtn").classList.add("active");
+        document.getElementById("loginTabBtn").classList.remove("active");
+        document.getElementById("signupForm").style.display = "block";
+        document.getElementById("loginForm").style.display = "none";
+      }
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const val = document.getElementById("loginUserVal").value.trim();
+      const err = document.getElementById("loginErr");
+
+      const digitsOnly = val.replace(/\D/g, '');
+      const isPhone = digitsOnly.length === 10;
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+\$/.test(val);
+
+      if (!isPhone && !isEmail) {
+        err.style.display = "block";
+      } else {
+        err.style.display = "none";
+        alert("Signed In Successfully!");
+        closeModal("authModal");
+        document.getElementById("navAuthBtn").innerHTML = `<i class="fa-solid fa-user-check"></i> My Account`;
+      }
+    }
+
+    function handleSignupSubmit(e) {
+      e.preventDefault();
+      const phoneVal = document.getElementById("regPhone").value.replace(/\D/g, '');
+      const emailVal = document.getElementById("regEmail").value.trim();
+
+      const phoneErr = document.getElementById("regPhoneErr");
+      const emailErr = document.getElementById("regEmailErr");
+
+      let valid = true;
+
+      if (phoneVal.length !== 10) {
+        phoneErr.style.display = "block";
+        valid = false;
+      } else { phoneErr.style.display = "none"; }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+\$/.test(emailVal)) {
+        emailErr.style.display = "block";
+        valid = false;
+      } else { emailErr.style.display = "none"; }
+
+      if (valid) {
+        alert("Account Created Successfully! Welcome to Royal Stay Hub.");
+        closeModal("authModal");
+        document.getElementById("navAuthBtn").innerHTML = `<i class="fa-solid fa-user-check"></i> My Account`;
+      }
+    }
+
+    function validateAndBook(e) {
+      e.preventDefault();
+      const phoneVal = document.getElementById("bookPhone").value.replace(/\D/g, '');
+      const err = document.getElementById("bookPhoneErr");
+
+      if (phoneVal.length !== 10) {
+        err.style.display = "block";
+      } else {
+        err.style.display = "none";
+        alert("Booking Confirmed! Details sent to your Mobile and Email.");
+        closeModal("bookingModal");
+      }
+    }
+
+    function toggleInfo(element) { element.classList.toggle("active"); }
+    function toggleFaq(element) { element.classList.toggle("active"); }
+
+    function openForgotModal() { closeModal("authModal"); openModal("forgotModal"); }
+    function handleForgotReset(e) {
+      e.preventDefault();
+      alert("Reset OTP sent to your contact!");
+      closeModal("forgotModal");
+    }
+
+    function openReviews(name) {
+      document.getElementById("reviewHotelTitle").innerText = name + " - Verified Reviews";
+      openModal("reviewModal");
+    }
+
+    function openGallery(name) {
+      document.getElementById("modalHotelTitle").innerText = name + " - Photo Gallery";
+      const gallery = document.getElementById("galleryContent");
+      gallery.innerHTML = `
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80"><div class="gallery-label">Deluxe Suite Room</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=600&q=80"><div class="gallery-label">Infinity Swimming Pool</div></div>
+      `;
+      openModal("galleryModal");
+    }
+
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    function openBooking(name) {
+      document.getElementById("bookingHotelTitle").innerText = "Book " + name;
+      openModal("bookingModal");
+    }
+
+    function resetView() {
+      populateStates();
+      switchCategoryTab('cities', document.querySelector('.cat-tab'));
+      quickFilter('Telangana', 'Hyderabad');
+    }
+
+    window.onload = function() {
+      populateStates();
+      switchCategoryTab('cities', document.querySelector('.cat-tab'));
+      quickFilter('Telangana', 'Hyderabad');
+    };
+  </script>
 </body>
 </html>
